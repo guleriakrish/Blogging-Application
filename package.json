@@ -1,0 +1,20 @@
+{
+  "name": "blogging-application",
+  "version": "1.0.0",
+  "description": "Bloggin application project",
+  "homepage": "https://github.com/guleriakrish/Blogging-Application#readme",
+  "bugs": {
+    "url": "https://github.com/guleriakrish/Blogging-Application/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guleriakrish/Blogging-Application.git"
+  },
+  "license": "ISC",
+  "author": "guleriakrish",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
