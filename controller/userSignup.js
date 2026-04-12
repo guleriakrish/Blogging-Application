@@ -5,7 +5,7 @@ async function get(req,res){
 }
 function post(userModel){
 	return async (req,res)=>{
-/	console.log(req.body);
+	console.log(req.body);
 	//	res.redirect("/");
 		userModel.create({
 			fullname:req.body.fullname,

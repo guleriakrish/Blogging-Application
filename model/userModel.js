@@ -46,6 +46,33 @@ userSchema.pre("save",function(next){
 
 });
 
+userSchema.static('matchPassword',async function(email,password){
+	
+	const entry=await this.findOne({email});
+	if(entry==null){
+		return 0;
+	}
+	console.log(entry);
+	const salt=entry.salt;
+
+	console.log(typeof(email));
+	console.log(typeof(password));
+	console.log(typeof(salt));
+	const enteredPassword=crypto.createHmac("sha256",salt)
+	.update(password).digest("hex");
+	console.log(enteredPassword);
+	console.log(entry.password);
+
+	if(enteredPassword!=entry.password){
+		return 1;
+	}
+
+	return 2;
+});
+
+
+
+
 
 const user=new mongoose.model("userSchema",userSchema,"users");
 
