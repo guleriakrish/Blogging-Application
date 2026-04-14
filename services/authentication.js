@@ -15,10 +15,11 @@ function createTokenForUser(user){
 	return token;
 }
 
-function validateToken(user){
+function validateToken(payload){
 
-	const payload=JWT.verify(payload,secret);
-	return payload;
+	const user=JWT.verify(payload,secret.one);
+//	console.log(user);
+	return user;
 }
 
 export default{
