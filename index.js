@@ -20,7 +20,16 @@ app.set("views",path.resolve("./views"));
 
 app.get("/",(req,res)=>{
 //	console.log(req.cookies.token);
-	res.render("home");
+	console.log(req.user);
+	if(req.user){
+		const user=req.user
+		res.render("home",{
+			user	
+		});
+	}
+	else{
+		res.render("home");
+	}
 });
 
 app.use("/user",userRouter);
