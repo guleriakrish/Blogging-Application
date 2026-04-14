@@ -9,11 +9,17 @@ function get(user){
 function post(user){
 	return async function(req,res){
 		console.log(req.body);
-		const code=await user.matchPassword(req.body.email,req.body.password);
-		console.log(code);
-		res.render("signin",{
-			serverCode:code
-		});
+		const obj=await user.matchPassword(req.body.email,req.body.password);
+		console.log(obj.code);
+		console.log(obj.token);
+		if(obj.code==2){
+			res.cookie("token",obj.token).redirect("/");
+		}
+		else{
+			res.render("signin",{
+				serverCode:obj.code
+			});
+		}
 	}
 }
 

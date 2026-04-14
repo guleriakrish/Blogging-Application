@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import crypto from "crypto";
+import authentication from "../services/authentication.js";
 
 const userSchema=new mongoose.Schema({
 	fullname:{
@@ -44,30 +45,38 @@ userSchema.pre("save",function(next){
 	this.salt=salt;
 	this.password=hashedPassword;
 
+	
+
 });
 
 userSchema.static('matchPassword',async function(email,password){
 	
 	const entry=await this.findOne({email});
-	if(entry==null){
-		return 0;
+	var code=0,token="";
+	if(entry!=null){
+		console.log(entry);
+		const salt=entry.salt;
+
+		console.log(typeof(email));
+		console.log(typeof(password));
+		console.log(typeof(salt));
+		const enteredPassword=crypto.createHmac("sha256",salt)
+		.update(password).digest("hex");
+		console.log(enteredPassword);
+		console.log(entry.password);
+
+		if(enteredPassword!=entry.password){
+			code=1;
+		}
+		else{
+			code=2
+			token=authentication.createTokenForUser(entry);
+		}
 	}
-	console.log(entry);
-	const salt=entry.salt;
-
-	console.log(typeof(email));
-	console.log(typeof(password));
-	console.log(typeof(salt));
-	const enteredPassword=crypto.createHmac("sha256",salt)
-	.update(password).digest("hex");
-	console.log(enteredPassword);
-	console.log(entry.password);
-
-	if(enteredPassword!=entry.password){
-		return 1;
-	}
-
-	return 2;
+	return {
+		code,
+		token
+	};
 });
 
 
