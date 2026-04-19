@@ -12,6 +12,21 @@
 
     <%- include("./partials/script") %>
     <%- include("./partials/navbar") %>
+    <form action="/blog/add" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+        <label for="coverOfBlog" class="form-label">Cover of Blog</label>
+        <input class="form-control" type="file" id="coverOfBlog" name="coverOfBlog">
+        </div>
+        <div class="mb-3">
+        <label for="titleOfBlog" class="form-label">Title</label>
+        <input type="text" class="form-control" id="titleOfBlog" name="titleOfBlog" placeholder="Title of Blog">
+        </div>
+        <div class="mb-3">
+        <label for="contentOfBlog" class="form-label">Content</label>
+        <input type="text" class="form-control" id="contentOfBlog" name="contentOfBlog" placeholder="Content of Blog">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
 </body>
 
 </html>
