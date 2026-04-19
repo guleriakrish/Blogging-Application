@@ -9,8 +9,12 @@ const blogSchema=new mongoose.Schema({
 		type:String,
 		required:false,
 	},
+	coverImageUrl:{
+		type:String,
+		required:false
+	},
 	createdBy:{
-		type:Schema.Types.ObjectId,
+		type:mongoose.Schema.Types.ObjectId,
 		ref:"userSchema",
 	},
 }, {timestamps:true}

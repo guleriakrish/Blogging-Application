@@ -15,7 +15,9 @@ export default function c(tokenName){
 //				console.log("\n AFTER USERPAYLOAD \n");
 //				console.log(userPayload);
 				req.user=userPayload;
-			}catch{}
+			}catch(error){
+				console.log("Erro Occured : ", error);
+			}
 
 		}
 		next();

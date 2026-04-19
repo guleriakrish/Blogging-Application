@@ -5,6 +5,7 @@ import userRouter from "./routes/user.js";
 import connection from "./connection/index.js";
 import cookieParser from "cookie-parser";
 import tokenValidation from "./middleware/tokenValidation.js";
+import blogRouter from "./routes/blog.js";
 
 const app=express();
 const port=2233;
@@ -19,7 +20,7 @@ app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 
 app.get("/",(req,res)=>{
-//	console.log(req.cookies.token);
+	console.log(req.cookies.token);
 	console.log(req.user);
 	if(req.user){
 		const user=req.user
@@ -33,4 +34,6 @@ app.get("/",(req,res)=>{
 });
 
 app.use("/user",userRouter);
+app.use("/blog",blogRouter);
+
 app.listen(port,console.log(`[SERVER STARTED AT PORT ${port}]`));
