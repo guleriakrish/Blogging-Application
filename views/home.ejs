@@ -9,6 +9,20 @@
 <body>
 	<%-include("./partials/script")%>
 	<%-include("./partials/navbar")%>
+
+	<% blogs.forEach(blog => { %>
+		<div class="card" style="width: 18rem;">
+		<img src="<%= blog.coverImageUrl %>" class="card-img-top" alt="...">
+		<div class="card-body">
+			<h5 class="card-title"><%= blog.title %></h5>
+			<a href="#" class="btn btn-primary">Go somewhere</a>
+		</div>
+		</div>
+		
+	<% }) %>
+\
+	
+
 	<% if (typeof successMessage !== 'undefined' && successMessage) { %>
 	    <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
 	      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img">

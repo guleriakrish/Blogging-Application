@@ -6,12 +6,14 @@ import connection from "./connection/index.js";
 import cookieParser from "cookie-parser";
 import tokenValidation from "./middleware/tokenValidation.js";
 import blogRouter from "./routes/blog.js";
+import blog from "./model/blog.js";
 
 const app=express();
 const port=2233;
 
 
 await connection("mongodb://127.0.0.1:27017/BloggIt");
+app.use('/uploads', express.static(path.resolve('./public/uploads')));
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(tokenValidation("token"));
@@ -19,13 +21,15 @@ app.use(tokenValidation("token"));
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 
-app.get("/",(req,res)=>{
-	console.log(req.cookies.token);
-	console.log(req.user);
+app.get("/",async function(req,res){
+	// console.log(req.cookies.token);
+	// console.log(req.user);
+	const blogs=await blog.find({});
 	if(req.user){
 		const user=req.user
 		res.render("home",{
-			user	
+			user,
+			blogs	
 		});
 	}
 	else{

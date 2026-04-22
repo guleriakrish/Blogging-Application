@@ -19,7 +19,7 @@ function post(user,blog){
         const bg=await blog.create({
             title:req.body.titleOfBlog,
             body:req.body.contentOfBlog,
-            coverImageUrl:`./public/uploads/${req.file.filename}`,
+            coverImageUrl:`./uploads/${req.user._id}/${req.file.filename}`,
             createdBy:req.user._id
         });
         return res.redirect(`/blog/${bg._id}`);
