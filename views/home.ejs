@@ -9,18 +9,22 @@
 <body>
 	<%-include("./partials/script")%>
 	<%-include("./partials/navbar")%>
+	
+	<% if (typeof blogs!=='undefined' && blogs.length>0) { %>
 
-	<% blogs.forEach(blog => { %>
-		<div class="card" style="width: 18rem;">
-		<img src="<%= blog.coverImageUrl %>" class="card-img-top" alt="...">
-		<div class="card-body">
-			<h5 class="card-title"><%= blog.title %></h5>
-			<a href="#" class="btn btn-primary">Go somewhere</a>
-		</div>
-		</div>
-		
-	<% }) %>
-\
+		<% blogs.forEach(blog => { %>
+			<div class="card" style="width: 18rem;">
+			<img src="<%= blog.coverImageUrl %>" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title"><%= blog.title %></h5>
+				<a href="#" class="btn btn-primary">Go somewhere</a>
+			</div>
+			</div>
+			
+		<% }) %>
+	
+	<% } %>
+
 	
 
 	<% if (typeof successMessage !== 'undefined' && successMessage) { %>
