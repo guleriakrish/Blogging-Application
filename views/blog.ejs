@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<%- include("partials/header") %>
+	<title>Blog</title>
+</head>
+
+<body>
+    <%-include("./partials/script")%>
+	<%-include("./partials/navbar")%>
+
+    <% if(typeof blogData!==undefined) { %>
+        <h2> <%= blogData.title %> </h2>
+        <img src="<%= blogData.coverImageUrl %>">
+        <p><%= blogData.body %></p>
+    <% } %>
+
+</body>
+
+
+</html>

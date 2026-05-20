@@ -1,10 +1,11 @@
 import express from "express";
 import blogAdd from "../controller/blogAdd.js";
-import user from "../model/userModel.js"
+import user from "../model/userModel.js";
 import blog from "../model/blog.js";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
+import blogDefault from "../controller/blogDefault.js";
 
 const storage=multer.diskStorage({
     destination:function(req,file,cb){
@@ -27,6 +28,16 @@ const upload=multer({storage:storage});
 
 const router=express.Router();
 
+// router.get("/d",(req,res)=>{
+//     res.end("[TESTING]");
+// });
+
+
 router.get("/add",blogAdd.get(user,blog));
 router.post("/add",upload.single('coverOfBlog'),blogAdd.post(user,blog));
+
+router.get("/d/:id",blogDefault.get(user,blog));
+// router.get("/d/:id",(req,res)=>{
+//     res.end("[TESTING]");
+// });
 export default router;  
