@@ -2,10 +2,12 @@ import express from "express";
 import blogAdd from "../controller/blogAdd.js";
 import user from "../model/userModel.js";
 import blog from "../model/blog.js";
+import Comment from "../model/Comment.js";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
 import blogDefault from "../controller/blogDefault.js";
+import blogComment from "../controller/blogComment.js";
 
 const storage=multer.diskStorage({
     destination:function(req,file,cb){
@@ -32,6 +34,7 @@ const router=express.Router();
 //     res.end("[TESTING]");
 // });
 
+router.post("/comment/:blogId",blogComment.post(user,blog,Comment));
 
 router.get("/add",blogAdd.get(user,blog));
 router.post("/add",upload.single('coverOfBlog'),blogAdd.post(user,blog));

@@ -3,7 +3,7 @@
 
 <head>
 	<%- include("partials/header") %>
-	<title>Blog</title>
+	<title> <%= blogData.title %> </title>
 </head>
 
 <body>
@@ -12,9 +12,18 @@
 
     <% if(typeof blogData!==undefined) { %>
         <h2> <%= blogData.title %> </h2>
-        <img src="<%= blogData.coverImageUrl %>">
+        <img src="<%= blogData.coverImageUrl %>" alt="<%= blogData.title %>" width="500px">
         <p><%= blogData.body %></p>
     <% } %>
+
+  <form action="/blog/comment/<%= blogData._id %>" method="POST" >
+  <div class="mb-3">
+    <label for="commentContent" class="form-label">Comment</label>
+    <input type="text" class="form-control" id="commentContent" name="commentContent" aria-describedby="emailHelp">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Comment</button>
+</form> 
 
 </body>
 
