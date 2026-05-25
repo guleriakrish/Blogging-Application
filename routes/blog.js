@@ -39,7 +39,7 @@ router.post("/comment/:blogId",blogComment.post(user,blog,Comment));
 router.get("/add",blogAdd.get(user,blog));
 router.post("/add",upload.single('coverOfBlog'),blogAdd.post(user,blog));
 
-router.get("/d/:id",blogDefault.get(user,blog));
+router.get("/d/:id",blogDefault.get(user,blog,Comment));
 // router.get("/d/:id",(req,res)=>{
 //     res.end("[TESTING]");
 // });

@@ -16,6 +16,19 @@
         <p><%= blogData.body %></p>
     <% } %>
 
+    <% if(typeof blogComments!=='undefined' && blogComments.length> 0) { %>
+        <% blogComments.forEach(comment=>  { %>
+            <div class="card">
+            <div class="card-body">
+                <%= comment.content %>
+            </div>
+            </div>
+
+        <% }) %>
+
+
+    <% } %>
+
   <form action="/blog/comment/<%= blogData._id %>" method="POST" >
   <div class="mb-3">
     <label for="commentContent" class="form-label">Comment</label>
