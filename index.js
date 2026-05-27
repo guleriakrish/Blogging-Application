@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from "express";
 import http from "http";
 import path from "path";
@@ -9,10 +10,10 @@ import blogRouter from "./routes/blog.js";
 import blog from "./model/blog.js";
 
 const app=express();
-const port=2233;
+const port=process.env.PORT;
 
 
-await connection("mongodb://127.0.0.1:27017/BloggIt");
+await connection(process.env.MONGODB_URL);
 app.use('/uploads', express.static(path.resolve('./public/uploads')));
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
